@@ -7,6 +7,8 @@ import { AddCommandComponent } from './pages/add-command/add-command.component';
 import { ViewCommandsComponent } from './pages/view-commands/view-commands.component';
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddExpenseComponent } from './pages/add-expense/add-expense.component';
+import { ExpenseHistoryComponent } from './pages/expense-history/expense-history.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     AddCommandComponent,
     ViewCommandsComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    AddExpenseComponent,
+    ExpenseHistoryComponent
   ],
   imports: [
     BrowserModule,

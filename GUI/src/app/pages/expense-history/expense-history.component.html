@@ -1,0 +1,55 @@
+<div class="expense-history-container">
+    <h2>Historique des Charges</h2>
+  
+    <!-- Filtres -->
+    <div class="filters">
+      <input
+        type="text"
+        placeholder="Recherche..."
+        [(ngModel)]="searchQuery"
+        (input)="applyFilter()"
+      />
+      <select [(ngModel)]="filterCategory" (change)="applyFilter()">
+        <option value="">Toutes les catégories</option>
+        <option>Matières premières</option>
+        <option>Main-d'œuvre</option>
+        <option>Maintenance et équipements</option>
+        <option>Logistique</option>
+        <option>Charges fixes</option>
+      </select>
+      <input
+        type="month"
+        [(ngModel)]="filterMonthYear"
+        (change)="applyFilter()"
+      />
+    </div>
+  
+    <!-- Tableau des Charges -->
+    <table>
+      <thead>
+        <tr>
+          <th (click)="sortBy('nom')">Nom</th>
+          <th (click)="sortBy('montant')">Montant</th>
+          <th (click)="sortBy('categorie')">Catégorie</th>
+          <th (click)="sortBy('date')">Date</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of filteredExpenses">
+          <td>{{ expense.nom }}</td>
+          <td>{{ expense.montant }}</td>
+          <td>{{ expense.categorie }}</td>
+          <td>{{ expense.date }}</td>
+          <td>{{ expense.notes }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Exportation -->
+    <div class="export-buttons">
+      <button (click)="exportToExcel()">Exporter en Excel</button>
+      <button (click)="exportToPDF()">Exporter en PDF</button>
+    </div>
+  </div>
+  
