@@ -1,0 +1,55 @@
+<div class="view-container">
+    <h2>View Commands</h2>
+  
+    <!-- Search Filter -->
+    <input
+      type="text"
+      placeholder="Search commands..."
+      [(ngModel)]="searchQuery"
+      (input)="applyFilter()"
+    />
+  
+    <!-- Commands Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Adresse</th>
+          <th>Téléphone</th>
+          <th>Note</th>
+          <th>Article</th>
+          <th>Prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let command of paginatedCommands">
+          <td>{{ command.nom }}</td>
+          <td>{{ command.prenom }}</td>
+          <td>{{ command.adresse }}</td>
+          <td>{{ command.telephone }}</td>
+          <td>{{ command.note }}</td>
+          <td>{{ command.article }}</td>
+          <td>{{ command.prix }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button
+        [disabled]="currentPage === 1"
+        (click)="changePage(currentPage - 1)"
+      >
+        Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button
+        [disabled]="currentPage === totalPages"
+        (click)="changePage(currentPage + 1)"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  
