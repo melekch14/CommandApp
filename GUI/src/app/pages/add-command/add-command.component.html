@@ -1,35 +1,42 @@
 <div class="form-container">
-    <h2>Add Command</h2>
-    <form [formGroup]="commandForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input id="nom" formControlName="nom" placeholder="Enter Nom" />
+  <h2>Add Command</h2>
+  <form [formGroup]="commandForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input id="nom" formControlName="nom" placeholder="Enter Nom" />
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input id="prenom" formControlName="prenom" placeholder="Enter Prénom" />
+    </div>
+    <div class="form-group">
+      <label for="adresse">Adresse</label>
+      <input id="adresse" formControlName="adresse" placeholder="Enter Adresse" />
+    </div>
+    <div class="form-group">
+      <label for="telephone">Téléphone</label>
+      <input id="telephone" formControlName="telephone" placeholder="Enter Téléphone" />
+    </div>
+    <div class="form-group">
+      <label for="note">Note</label>
+      <textarea id="note" formControlName="note" placeholder="Enter Note"></textarea>
+    </div>
+
+    <div formArrayName="articles">
+      <div *ngFor="let article of articles.controls; let i = index" [formGroupName]="i">
+        <h3>Article {{ i + 1 }}</h3>
+        <div class="form-group">
+          <label for="article-name-{{ i }}">Article</label>
+          <input id="article-name-{{ i }}" formControlName="name" placeholder="Enter Article Name" />
+        </div>
+        <div class="form-group">
+          <label for="article-price-{{ i }}">Prix</label>
+          <input id="article-price-{{ i }}" formControlName="price" placeholder="Enter Article Price" />
+        </div>
+        <button type="button" (click)="removeArticle(i)">Remove Article</button>
       </div>
-      <div class="form-group">
-        <label for="prenom">Prénom</label>
-        <input id="prenom" formControlName="prenom" placeholder="Enter Prénom" />
-      </div>
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input id="adresse" formControlName="adresse" placeholder="Enter Adresse" />
-      </div>
-      <div class="form-group">
-        <label for="telephone">Téléphone</label>
-        <input id="telephone" formControlName="telephone" placeholder="Enter Téléphone" />
-      </div>
-      <div class="form-group">
-        <label for="note">Note</label>
-        <textarea id="note" formControlName="note" placeholder="Enter Note"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="article">Article</label>
-        <input id="article" formControlName="article" placeholder="Enter Article" />
-      </div>
-      <div class="form-group">
-        <label for="prix">Prix</label>
-        <input id="prix" formControlName="prix" placeholder="Enter Prix" />
-      </div>
-      <button type="submit" [disabled]="commandForm.invalid">Add Command</button>
-    </form>
-  </div>
-  
+    </div>
+    <button type="button" (click)="addArticle()">Add Article</button>
+    <button type="submit" [disabled]="commandForm.invalid">Add Command</button>
+  </form>
+</div>
