@@ -1,32 +1,7 @@
-.container {
-    display: flex;
-    height: 100vh;
-  }
-  .sidebar {
-    width: 250px;
-    background-color: #333;
-    color: white;
-    padding: 15px;
-  }
-  .sidebar h2 {
-    margin-bottom: 20px;
-  }
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  .sidebar ul li {
-    margin: 10px 0;
-  }
-  .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  .sidebar ul li a:hover {
-    text-decoration: underline;
-  }
-  .content {
-    flex-grow: 1;
-    padding: 20px;
-  }
-  
+*{
+  font-family: "Roboto Mono", monospace;
+}
+
+.form-label {
+  color: #3b3b3b !important;
+}

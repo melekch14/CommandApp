@@ -11,10 +11,10 @@ export class AddCommandComponent {
 
   constructor(private fb: FormBuilder) {
     this.commandForm = this.fb.group({
-      nom: ['', Validators.required],
-      prenom: ['', Validators.required],
+      nom: ['', [Validators.required, Validators.minLength(2)]],
+      prenom: ['', [Validators.required, Validators.minLength(2)]],
       adresse: ['', Validators.required],
-      telephone: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      telephone: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
       note: [''],
       articles: this.fb.array([
         this.createArticle()

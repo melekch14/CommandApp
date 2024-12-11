@@ -1,16 +1,22 @@
-<div class="container">
-  <nav class="sidebar">
-    <h2>My App</h2>
-    <ul>
-      <li><a routerLink="/dashboard">Dashboard</a></li>
-      <li><a routerLink="/add-command">Add Command</a></li>
-      <li><a routerLink="/view-commands">View Commands</a></li>
-      <li><a routerLink="/add-expense">Add Expenses</a></li>
-      <li><a routerLink="/expense-history">Expenses History</a></li>
-      <li><a routerLink="/statistics">Statistics</a></li>
-    </ul>
-  </nav>
-  <main class="content">
+<div class="d-flex">
+  <div [ngClass]="{'collapsed': sideCollapsed}" id="sidebar" class="text-white bg-dark sidebar">
+    <nav class="nav flex-column">
+      <div class="navbar-brand" href="#">
+        <img [src]="sideCollapsed?'../../../../assets/ShortLogo.png':'../../../../assets/fullLogo.png'"
+          [style.width]="sideCollapsed ? '65px':'160px'" alt="Logo">
+      </div>
+      <a class="nav-link">
+        <span class="nav-icon" (click)="sideCollapsed = !sideCollapsed"><i class="fa-solid fa-bars"></i></span>
+      </a>
+      <a *ngFor="let navOption of screens" class="nav-link" [ngClass]="{'selected': activeLink === navOption.href}"
+        (click)="activeLink = navOption.href" [routerLink]="navOption.href">
+        <span class="nav-icon"><i [class]="navOption.icon"></i></span>
+        <span class="nav-label">{{navOption.name}}</span>
+      </a>
+    </nav>
+  </div>
+  <main class="content"
+    [ngStyle]="{'margin-left': sideCollapsed ? '70px' : '250px'}">
     <router-outlet></router-outlet>
   </main>
 </div>

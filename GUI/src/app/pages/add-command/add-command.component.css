@@ -1,114 +1,58 @@
-/* Container for the form */
-.form-container {
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ddd;
+.article-card {
+  position: relative;
+  border: 1px solid white;
   border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  background-color: #fff;
+  margin-top: 2rem;
+  filter: drop-shadow(0 0 2px #c4c4c4);
 }
 
-/* Form header */
-h2 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 20px;
-  color: #333;
+.card-body {
+  padding: 30px 20px;
 }
 
-/* Form group container */
-.form-group {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-label {
-  flex: 0 0 25%;
-  margin-bottom: 0;
-  font-weight: bold;
-  color: #555;
-  font-size: 14px;
-}
-
-/* Input and textarea styles */
-input, textarea {
-  flex: 1;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input:focus, textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 3px rgba(0, 123, 255, 0.3);
-  outline: none;
-}
-
-/* Buttons */
-button {
-  padding: 8px 15px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #007bff;
+.remove-btn {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background-color: #555555;
   color: white;
   border: none;
-  border-radius: 4px;
+  font-size: 20px;
+  border-radius: 20%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-right: 5px;
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-button:hover:not(:disabled) {
+.remove-btn:hover {
+  background-color: #a3a3a3;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  position: absolute;
+  top: -20px;
+  background: white;
+  padding: 4px 14px;
+  border-radius: 6px;
+  color: #3b3b3b;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
   background-color: #0056b3;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Article buttons */
-button[type="button"] {
-  background-color: #6c757d;
-}
-
-button[type="button"]:hover:not(:disabled) {
-  background-color: #5a6268;
-}
-
-/* Article group styles */
-form div[formArrayName="articles"] {
-  margin-top: 10px;
-  margin-bottom: 5px;
-}
-
-form div[formArrayName="articles"] h3 {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #333;
-}
-
-form div[formArrayName="articles"] .form-group {
-  margin-bottom: 5px;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  .form-group {
-    display: block;
-  }
-
-  label {
-    margin-bottom: 5px;
-  }
-
-  input, textarea {
-    width: 100%;
-  }
+  border-color: #004085;
 }
