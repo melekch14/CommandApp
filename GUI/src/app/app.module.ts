@@ -9,6 +9,7 @@ import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddExpenseComponent } from './pages/add-expense/add-expense.component';
 import { ExpenseHistoryComponent } from './pages/expense-history/expense-history.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ExpenseHistoryComponent } from './pages/expense-history/expense-history
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

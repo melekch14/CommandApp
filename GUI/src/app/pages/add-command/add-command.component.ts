@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { CommandService } from '../../services/command.service';
 
 @Component({
   selector: 'app-add-command',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 export class AddCommandComponent {
   commandForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private commandService: CommandService) {
     this.commandForm = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(2)]],
       prenom: ['', [Validators.required, Validators.minLength(2)]],
@@ -43,11 +44,19 @@ export class AddCommandComponent {
 
   onSubmit() {
     if (this.commandForm.valid) {
-      console.log('Command Added:', this.commandForm.value);
-      alert('Command Added Successfully!');
-      this.commandForm.reset();
-      this.articles.clear();
-      this.addArticle(); // Add the initial article group back
+      this.commandService.addCommand(this.commandForm.value).subscribe(
+        response => {
+          console.log('Command Added:', response);
+          alert('Command Added Successfully!');
+          this.commandForm.reset();
+          this.articles.clear();
+          this.addArticle(); // Add the initial article group back
+        },
+        error => {
+          console.error('Error adding command:', error);
+          alert('Failed to add the command.');
+        }
+      );
     } else {
       alert('Please fill in all required fields correctly.');
     }
