@@ -1,21 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import { ExpenseService } from '../../services/expense.service'; // Adjust the path as needed
 
 @Component({
   selector: 'app-expense-history',
   templateUrl: './expense-history.component.html',
   styleUrls: ['./expense-history.component.css'],
 })
-export class ExpenseHistoryComponent {
-  expenses = [
-    { nom: 'Achat de cuir', montant: 500, categorie: 'Matières premières', date: '2024-12-01', notes: '' },
-    { nom: 'Transport', montant: 200, categorie: 'Logistique', date: '2024-11-15', notes: 'Livraison rapide' },
-    // Ajoutez d'autres données pour tester
-  ];
-
-  filteredExpenses = [...this.expenses]; // Clone pour filtrage
+export class ExpenseHistoryComponent implements OnInit {
+  expenses: any[] = [];
+  filteredExpenses: any[] = [];
   searchQuery = '';
   filterCategory = '';
   filterMonthYear = '';
@@ -23,6 +19,24 @@ export class ExpenseHistoryComponent {
   // Tri
   sortKey: keyof typeof this.expenses[0] = 'date';
   sortDirection: 'asc' | 'desc' = 'asc';
+
+  constructor(private expenseService: ExpenseService) {}
+
+  ngOnInit() {
+    this.fetchExpenses();
+  }
+
+  fetchExpenses() {
+    this.expenseService.getAllExpenses().subscribe(
+      (data) => {
+        this.expenses = data;
+        this.filteredExpenses = [...this.expenses]; // Clone for filtering
+      },
+      (error) => {
+        console.error('Failed to fetch expenses', error);
+      }
+    );
+  }
 
   applyFilter() {
     const query = this.searchQuery.toLowerCase();

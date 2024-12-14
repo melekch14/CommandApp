@@ -32,6 +32,16 @@ const db = new sqlite3.Database('./mydb.db', (err) => {
       price REAL NOT NULL,
       FOREIGN KEY (command_id) REFERENCES commands (id)
     )`);
+
+    // Create expenses table
+    db.run(`CREATE TABLE IF NOT EXISTS expenses (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nom TEXT NOT NULL,
+      montant REAL NOT NULL,
+      categorie TEXT NOT NULL,
+      date TEXT NOT NULL,
+      notes TEXT
+    )`);
   }
 });
 

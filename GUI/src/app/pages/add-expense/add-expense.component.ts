@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-add-expense',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-expense.component.css'],
 })
 export class AddExpenseComponent {
+
   expense = {
     nom: '',
     montant: null,
@@ -15,15 +17,36 @@ export class AddExpenseComponent {
   };
 
   categories = [
-    'Matières premières (cuir, tissus, semelles, etc.)',
+    'Matières premières',
     'Main-d\'œuvre (salaires, heures supplémentaires)',
     'Maintenance et équipements',
     'Logistique (transport, emballage)',
     'Charges fixes (loyer, électricité, internet)',
   ];
 
+  constructor(private expenseService: ExpenseService) { }
+
   onSubmit() {
-    console.log('Expense submitted:', this.expense);
-    // Add logic to save the expense to backend or local storage
+    this.expenseService.addExpense(this.expense).subscribe({
+      next: (response) => {
+        console.log('Expense added:', response);
+        alert('Expense successfully added!');
+        this.resetForm();
+      },
+      error: (err) => {
+        console.error('Error adding expense:', err);
+        alert('Failed to add expense. Please try again.');
+      },
+    });
+  }
+
+  resetForm() {
+    this.expense = {
+      nom: '',
+      montant: null,
+      categorie: '',
+      date: '',
+      notes: '',
+    };
   }
 }
