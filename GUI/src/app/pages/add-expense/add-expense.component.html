@@ -1,27 +1,76 @@
-<div class="add-expense-container">
-    <h2>Ajout de Charges</h2>
-  
-    <form (ngSubmit)="onSubmit()">
-      <label for="nom">Nom de la charge:</label>
-      <input id="nom" type="text" [(ngModel)]="expense.nom" name="nom" required />
-  
-      <label for="montant">Montant:</label>
-      <input id="montant" type="number" [(ngModel)]="expense.montant" name="montant" required />
-  
-      <label for="categorie">Catégorie:</label>
-      <select id="categorie" [(ngModel)]="expense.categorie" name="categorie" required>
-        <option *ngFor="let category of categories" [value]="category">
-          {{ category }}
-        </option>
-      </select>
-  
-      <label for="date">Date:</label>
-      <input id="date" type="date" [(ngModel)]="expense.date" name="date" required />
-  
-      <label for="notes">Notes supplémentaires (facultatif):</label>
-      <textarea id="notes" [(ngModel)]="expense.notes" name="notes"></textarea>
-  
-      <button type="submit">Ajouter</button>
-    </form>
+<div class="container my-4">
+  <div class="add-expense-card">
+    <h2 class="card-title">Ajout de Charges</h2>
+
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom de la charge:</label>
+          <input
+            id="nom"
+            type="text"
+            class="form-control"
+            [(ngModel)]="expense.nom"
+            name="nom"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="montant" class="form-label">Montant:</label>
+          <input
+            id="montant"
+            type="number"
+            class="form-control"
+            [(ngModel)]="expense.montant"
+            name="montant"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="categorie" class="form-label">Catégorie:</label>
+          <select
+            id="categorie"
+            class="form-select"
+            [(ngModel)]="expense.categorie"
+            name="categorie"
+            required
+          >
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Date:</label>
+          <input
+            id="date"
+            type="date"
+            class="form-control"
+            [(ngModel)]="expense.date"
+            name="date"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="notes" class="form-label">Notes supplémentaires (facultatif):</label>
+          <textarea
+            id="notes"
+            class="form-control"
+            [(ngModel)]="expense.notes"
+            name="notes"
+          ></textarea>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary px-4">
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-  
+</div>
