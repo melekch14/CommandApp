@@ -23,8 +23,7 @@
               <th>Adresse</th>
               <th>Téléphone</th>
               <th>Note</th>
-              <th>Article</th>
-              <th>Prix</th>
+              <th>Articles</th>
             </tr>
           </thead>
           <tbody>
@@ -34,13 +33,21 @@
               <td>{{ command.adresse }}</td>
               <td>{{ command.telephone }}</td>
               <td>{{ command.note }}</td>
-              <td>{{ command.article }}</td>
-              <td>{{ command.prix }}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let article of command.articles">
+                    {{ article.name }} - {{ article.price | currency }}
+                  </li>
+                </ul>
+                <div class="font-weight-bold text-right">
+                  Total: {{ command.totalPrice | currency }}
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-
+      
       <div class="d-flex justify-content-between align-items-center mt-3">
         <button
           class="btn btn-primary px-4"
