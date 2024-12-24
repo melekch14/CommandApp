@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddExpenseComponent } from './pages/add-expense/add-expense.component';
 import { ExpenseHistoryComponent } from './pages/expense-history/expense-history.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './pages/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     ViewCommandsComponent,
     StatisticsComponent,
     AddExpenseComponent,
-    ExpenseHistoryComponent
+    ExpenseHistoryComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -6,19 +6,22 @@ import { ViewCommandsComponent } from './pages/view-commands/view-commands.compo
 import { StatisticsComponent } from './pages/statistics/statistics.component';
 import { AddExpenseComponent } from './pages/add-expense/add-expense.component';
 import { ExpenseHistoryComponent } from './pages/expense-history/expense-history.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'add-command', component: AddCommandComponent },
-  { path: 'view-commands', component: ViewCommandsComponent },
-  { path: 'statistics', component: StatisticsComponent },
-  { path: 'add-expense', component: AddExpenseComponent },
-  { path: 'expense-history', component: ExpenseHistoryComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'add-command', component: AddCommandComponent, canActivate: [AuthGuard] },
+  { path: 'view-commands', component: ViewCommandsComponent, canActivate: [AuthGuard] },
+  { path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard] },
+  { path: 'add-expense', component: AddExpenseComponent, canActivate: [AuthGuard] },
+  { path: 'expense-history', component: ExpenseHistoryComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

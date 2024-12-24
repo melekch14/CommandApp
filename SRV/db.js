@@ -11,7 +11,6 @@ const db = new sqlite3.Database('./mydb.db', (err) => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nom TEXT NOT NULL,
       prenom TEXT NOT NULL,
-      username TEXT UNIQUE NOT NULL,
       email TEXT UNIQUE NOT NULL,
       password TEXT NOT NULL
     )`);

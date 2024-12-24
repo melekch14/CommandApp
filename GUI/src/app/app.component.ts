@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-
+export class AppComponent {
   sideCollapsed: boolean = false;
+  isLoggedIn: boolean = false;
   screens: any[] = [
     {
       name: 'Dashboard',
@@ -39,10 +41,17 @@ export class AppComponent implements OnInit {
       icon: 'fa-solid fa-chart-line',
       href: '/statistics'
     }
-  ]
+  ];
   activeLink: string = 'dashboard';
 
-  ngOnInit(): void {
-    console.log('here');
+  constructor(private authService: AuthService, private router: Router) {
+    this.authService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
