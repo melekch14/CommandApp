@@ -8,10 +8,11 @@ import { AddExpenseComponent } from './pages/add-expense/add-expense.component';
 import { ExpenseHistoryComponent } from './pages/expense-history/expense-history.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard]  },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'add-command', component: AddCommandComponent, canActivate: [AuthGuard] },
   { path: 'view-commands', component: ViewCommandsComponent, canActivate: [AuthGuard] },

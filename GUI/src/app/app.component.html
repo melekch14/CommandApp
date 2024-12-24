@@ -15,9 +15,10 @@
         <span class="nav-label">{{navOption.name}}</span>
       </a>
 
-      <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-danger btn-sm" style="width: 100px;" (click)="logout()">Logout</button>
-      </div>
+      <a class="nav-link logoutNav" (click)="logout()">
+        <span class="nav-icon"><i [class]="'fa-solid fa-right-from-bracket'"></i></span>
+        <span class="nav-label">Logout</span>
+      </a>
     </nav>
   </div>
   <main class="content" [ngStyle]="{'margin-left': sideCollapsed ? '70px' : '250px'}">

@@ -4,6 +4,7 @@
     padding: 1.5rem;
 }
 .sidebar {
+    background-color: #1c2d4d !important;
     height: 100%;
     width: 250px;
     padding: 0;
@@ -77,4 +78,10 @@
     width: 160px;
     object-fit: scale-down;
     display: block;
+}
+
+.logoutNav{
+    position: absolute;
+    bottom: 0;
+    background: #c32525;
 }

@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  private hasToken(): boolean {
+  public hasToken(): boolean {
     return !!localStorage.getItem('token');
   }
 

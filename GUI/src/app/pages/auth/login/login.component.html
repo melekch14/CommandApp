@@ -1,39 +1,55 @@
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow p-4" style="width: 400px;">
-      <div class="text-center mb-4">
-        <h3 class="fw-bold">Login</h3>
-        <p class="text-muted">Sign in to your account</p>
+<div
+  class="d-flex justify-content-center align-items-center min-vh-100"
+  style="background: linear-gradient(to right, #1e3c72, #2a5298);"
+>
+  <div class="card shadow p-4" style="width: 400px; border-radius: 15px;">
+    <div class="text-center mb-4">
+      <h3 class="fw-bold" style="color: #1e3c72;">Login</h3>
+      <p class="text-muted">Sign in to your account</p>
+    </div>
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          [(ngModel)]="loginData.email"
+          name="email"
+          required
+          style="border-radius: 10px; border: 1px solid #ccc;"
+        />
       </div>
-      <form (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            [(ngModel)]="loginData.email"
-            name="email"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input
-            type="password"
-            id="password"
-            class="form-control"
-            [(ngModel)]="loginData.password"
-            name="password"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-primary w-100">
-          Login
-        </button>
-      </form>
-      <div class="text-center mt-3">
-        <a href="#" class="text-decoration-none">Forgot password?</a>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          [(ngModel)]="loginData.password"
+          name="password"
+          required
+          style="border-radius: 10px; border: 1px solid #ccc;"
+        />
       </div>
+      <button
+        type="submit"
+        class="btn btn-primary w-100 fw-bold"
+        style="border-radius: 10px; background-color: #1e3c72; border: none;"
+      >
+        Login
+      </button>
+    </form>
+    <div class="text-center mt-3">
+      <a
+        href="#"
+        class="text-decoration-none"
+        style="color: #1e3c72; font-weight: 500;"
+        onmouseover="this.style.color='#2a5298'"
+        onmouseout="this.style.color='#1e3c72'"
+      >
+        Forgot password?
+      </a>
     </div>
   </div>
-  
+</div>
