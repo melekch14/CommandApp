@@ -16,6 +16,7 @@ export class AddCommandComponent {
       prenom: ['', [Validators.required, Validators.minLength(2)]],
       adresse: ['', Validators.required],
       telephone: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
+      date: [''],
       note: [''],
       articles: this.fb.array([
         this.createArticle()

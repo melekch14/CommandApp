@@ -10,9 +10,9 @@ export class LoginGuard implements CanActivate {
 
   canActivate(): boolean {
     if (!this.authService.hasToken()) {
-      return true; // Allow access if not logged in
+      return true;
     }
-    this.router.navigate(['/dashboard']); // Redirect if logged in
+    this.router.navigate(['/dashboard']);
     return false;
   }
 }

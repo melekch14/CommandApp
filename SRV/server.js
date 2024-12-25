@@ -4,6 +4,7 @@ const cors = require('cors');
 const commandRoutes = require('./routes/commandRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
 const userRoutes = require('./routes/userRoutes');
+const statRoutes = require('./routes/statisticsRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use('/commands', commandRoutes);
 app.use('/expenses', expenseRoutes);
 app.use('/users', userRoutes);
+app.use('/stat', statRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

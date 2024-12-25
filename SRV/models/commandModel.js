@@ -23,12 +23,12 @@ class CommandModel {
 
   // Create a command with articles
   static async createCommandWithArticles(data) {
-    const { nom, prenom, adresse, telephone, note, articles } = data;
+    const { nom, prenom, adresse, telephone, date, note, articles } = data;
 
     return new Promise((resolve, reject) => {
       db.run(
-        `INSERT INTO commands (nom, prenom, adresse, telephone, note) VALUES (?, ?, ?, ?, ?)`,
-        [nom, prenom, adresse, telephone, note],
+        `INSERT INTO commands (nom, prenom, adresse, telephone, date, note) VALUES (?, ?, ?, ?, ?, ?)`,
+        [nom, prenom, adresse, telephone, date, note],
         function (err) {
           if (err) return reject(err);
 
@@ -89,7 +89,7 @@ class CommandModel {
   static async getCommandWithArticles() {
     return new Promise((resolve, reject) => {
         const sql = `
-            SELECT c.id AS command_id, c.nom, c.prenom, c.adresse, c.telephone, c.note, 
+            SELECT c.id AS command_id, c.nom, c.prenom, c.adresse, c.telephone, c.date, c.note, 
                    a.id AS article_id, a.name AS article_name, a.price AS article_price
             FROM commands c
             LEFT JOIN articles a ON c.id = a.command_id`;
@@ -109,6 +109,7 @@ class CommandModel {
                             prenom: row.prenom,
                             adresse: row.adresse,
                             telephone: row.telephone,
+                            date: row.date,
                             note: row.note,
                             articles: []
                         });

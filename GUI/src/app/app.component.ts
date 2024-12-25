@@ -32,7 +32,7 @@ export class AppComponent {
       href: '/add-expense'
     },
     {
-      name: 'Expenses History',
+      name: 'View Expenses',
       icon: 'fa-solid fa-clock-rotate-left',
       href: '/expense-history'
     },

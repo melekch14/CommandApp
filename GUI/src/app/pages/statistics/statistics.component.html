@@ -1,1 +1,65 @@
-<p>statistics works!</p>
+<div class="statistics-container">
+    <h2>Statistics Dashboard</h2>
+  
+    <div class="grid">
+      <!-- Total Revenue Card -->
+      <div class="col-12 md:col-3">
+        <div class="stat-card">
+          <h3>Total Revenue</h3>
+          <p class="revenue-value">€{{ totalRevenue }}</p>
+        </div>
+      </div>
+  
+      <!-- Bar Chart -->
+      <div class="col-12 md:col-6 lg:col-5">
+        <div class="chart-card">
+          <h3>Top Articles</h3>
+          <p-chart type="bar" 
+                  [data]="barChartData" 
+                  [options]="chartOptions">
+          </p-chart>
+        </div>
+      </div>
+  
+      <!-- Pie Chart -->
+      <div class="col-12 md:col-6 lg:col-4">
+        <div class="chart-card">
+          <h3>Expenses by Category</h3>
+          <p-chart type="pie" 
+                  [data]="pieChartData" 
+                  [options]="chartOptions">
+          </p-chart>
+        </div>
+      </div>
+  
+      <!-- Revenue vs Expenses Chart -->
+      <div class="col-12 md:col-6">
+        <div class="chart-card">
+          <h3>Revenue vs Expenses</h3>
+          <p-chart type="line" 
+                  [data]="lineChartRevenueVsExpenses" 
+                  [options]="chartOptions">
+          </p-chart>
+        </div>
+      </div>
+  
+      <!-- Expenses Trend Chart -->
+      <div class="col-12 md:col-6">
+        <div class="chart-card">
+          <h3>Expenses Trend</h3>
+          <p-chart type="line" 
+                  [data]="lineChartExpensesTrend" 
+                  [options]="chartOptions">
+          </p-chart>
+        </div>
+      </div>
+
+      <div class="p-col-12 p-md-6">
+        <div class="p-card p-shadow-2">
+          <h3 class="p-text-center">Bénéfice par Mois</h3>
+          <p-chart type="line" [data]="lineChartProfitByMonth" [options]="chartOptions"></p-chart>
+        </div>
+      </div>
+      
+    </div>
+  </div>

@@ -11,7 +11,7 @@ import { AddExpenseComponent } from './pages/add-expense/add-expense.component';
 import { ExpenseHistoryComponent } from './pages/expense-history/expense-history.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/auth/login/login.component';
-
+import { ChartModule } from 'primeng/chart';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,9 @@ import { LoginComponent } from './pages/auth/login/login.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

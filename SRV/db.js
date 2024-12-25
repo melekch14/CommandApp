@@ -21,6 +21,7 @@ const db = new sqlite3.Database('./mydb.db', (err) => {
       prenom TEXT NOT NULL,
       adresse TEXT NOT NULL,
       telephone TEXT NOT NULL,
+      date TEXT NOT NULL,
       note TEXT
     )`);
 
