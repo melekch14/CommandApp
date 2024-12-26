@@ -9,5 +9,6 @@ router.get('/revenue-expenses', StatisticsController.getRevenueVsExpenses);
 router.get('/expenses-trend', StatisticsController.getExpensesTrend);
 router.get('/growth-rate', StatisticsController.getGrowthRate);
 router.get('/profit-by-month', StatisticsController.getProfitByMonth);
+router.get('/gross-margin', StatisticsController.getGrossMargin);
 
 module.exports = router;

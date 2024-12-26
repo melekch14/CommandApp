@@ -1,1 +1,41 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+    <ng-container *ngIf="statistics$ | async as stats">
+      <div class="dashboard__grid">
+        <p-card class="dashboard__card">
+          <div class="dashboard__header">
+            <h3>Total Revenue</h3>
+          </div>
+          <div class="dashboard__content dashboard__content--success">
+            {{ stats.totalRevenue | currency:'EUR' }}
+          </div>
+        </p-card>
+  
+        <p-card class="dashboard__card">
+          <div class="dashboard__header">
+            <h3>Total Expenses</h3>
+          </div>
+          <div class="dashboard__content dashboard__content--danger">
+            {{ stats.totalExpenses | currency:'EUR' }}
+          </div>
+        </p-card>
+  
+        <p-card class="dashboard__card">
+          <div class="dashboard__header">
+            <h3>Net Profit</h3>
+          </div>
+          <div class="dashboard__content" [ngClass]="{'dashboard__content--danger': stats.netProfit < 0, 'dashboard__content--success': stats.netProfit >= 0}">
+            {{ stats.netProfit | currency:'EUR' }}
+          </div>
+        </p-card>
+  
+        <p-card class="dashboard__card">
+          <div class="dashboard__header">
+            <h3>Gross Margin</h3>
+          </div>
+          <div class="dashboard__content dashboard__content--info">
+            {{ stats.grossMargin | number:'1.2-2' }}%
+          </div>
+        </p-card>
+      </div>
+    </ng-container>
+  </div>

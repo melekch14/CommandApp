@@ -12,6 +12,7 @@ import { ExpenseHistoryComponent } from './pages/expense-history/expense-history
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { ChartModule } from 'primeng/chart';
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { ChartModule } from 'primeng/chart';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ChartModule
+    ChartModule,
+    CardModule
     
   ],
   providers: [],

@@ -1,0 +1,29 @@
+:root {
+    /* Primary Colors */
+    --primary-light: #7986cb;
+    --primary: #3f51b5;
+    --primary-dark: #303f9f;
+  
+    /* Status Colors */
+    --success-light: #66bb6a;
+    --success: #4caf50;
+    --success-dark: #388e3c;
+    
+    --danger-light: #ef5350;
+    --danger: #f44336;
+    --danger-dark: #d32f2f;
+    
+    --info-light: #64b5f6;
+    --info: #2196f3;
+    --info-dark: #1976d2;
+  
+    /* Neutral Colors */
+    --background-light: #ffffff;
+    --background: #f8f9fa;
+    --background-dark: #e9ecef;
+  
+    /* Effects */
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --card-radius: 12px;
+    --spacing-unit: 1rem;
+  }

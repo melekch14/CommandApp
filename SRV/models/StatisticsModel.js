@@ -1,6 +1,7 @@
 const db = require('../db');
 
 class StatisticsModel {
+
   static async getTotalRevenue() {
     return new Promise((resolve, reject) => {
       const query = `SELECT SUM(price) as totalRevenue FROM articles`;
@@ -113,6 +114,29 @@ class StatisticsModel {
       db.all(query, [], (err, rows) => {
         if (err) reject(err);
         resolve(rows);
+      });
+    });
+  }
+
+  static async getGrossMargin() {
+    return new Promise((resolve, reject) => {
+      const revenueQuery = `SELECT SUM(price) as totalRevenue FROM articles`;
+      const expensesQuery = `SELECT SUM(montant) as totalExpenses FROM expenses`;
+
+      db.get(revenueQuery, (err, revenueRow) => {
+        if (err) return reject(err);
+
+        const totalRevenue = revenueRow?.totalRevenue || 0;
+
+        db.get(expensesQuery, (err, expensesRow) => {
+          if (err) return reject(err);
+
+          const totalExpenses = expensesRow?.totalExpenses || 0;
+          const netProfit = totalRevenue - totalExpenses;
+          const grossMargin = totalRevenue > 0 ? (netProfit / totalRevenue) * 100 : 0;
+
+          resolve({ totalRevenue, totalExpenses, netProfit, grossMargin });
+        });
       });
     });
   }

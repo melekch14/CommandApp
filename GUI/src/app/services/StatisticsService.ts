@@ -33,4 +33,8 @@ export class StatisticsService {
   getProfitByMonth(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/profit-by-month`);
   }
+
+  getGrossMargin(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/gross-margin`);
+  }
 }
