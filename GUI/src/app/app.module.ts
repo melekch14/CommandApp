@@ -32,7 +32,6 @@ import { CardModule } from 'primeng/card';
     HttpClientModule,
     ChartModule,
     CardModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

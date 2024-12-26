@@ -22,11 +22,16 @@
 
 .table {
   margin-top: 1rem;
-  border: 1px solid #d6eaff;
+  border-collapse: collapse;
+}
+
+.table tbody, .table td, .table tfoot, .table th, .table thead, .table tr{
+  border: none !important;
+  border-style: hidden;
 }
 
 .table thead th {
-  background-color: #59a9ff;
+  background-color: #576b91;
   color: white;
 }
 
@@ -59,4 +64,24 @@ select {
 
 .btn-primary:hover {
   background-color: #0056b3;
+}
+
+td:has(ul) div{
+  margin-left: 2rem;
+}
+
+th:last-of-type{
+  border-top-right-radius: 10px;
+}
+
+th:first-of-type{
+  border-top-left-radius: 10px;
+}
+
+tr:last-of-type td:last-of-type{
+  border-bottom-right-radius: 10px;
+}
+
+tr:last-of-type td:first-of-type{
+  border-bottom-left-radius: 10px;
 }
