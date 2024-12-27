@@ -30,9 +30,28 @@
           </div>
           <div class="col-md-6">
             <label for="telephone" class="form-label">Téléphone</label>
-            <input id="telephone" formControlName="telephone" placeholder="Enter Téléphone" class="form-control" />
-            <small class="text-danger"
-              *ngIf="commandForm.get('telephone')?.invalid && commandForm.get('telephone')?.touched">
+            <div class="input-group">
+              <input
+                id="telephone"
+                formControlName="telephone"
+                placeholder="Enter Téléphone"
+                class="form-control"
+                (blur)="checkPhoneHistory(commandForm.get('telephone')?.value)"
+                (input)="resetHistoryButton()"
+              />
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                *ngIf="phoneHistory.length > 0"
+                (click)="showPhoneHistory()"
+              >
+                <i class="fa-solid fa-info-circle"></i>
+              </button>
+            </div>
+            <small
+              class="text-danger"
+              *ngIf="commandForm.get('telephone')?.invalid && commandForm.get('telephone')?.touched"
+            >
               Téléphone is required and must be a valid number.
             </small>
           </div>

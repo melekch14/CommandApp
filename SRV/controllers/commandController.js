@@ -67,6 +67,18 @@ class CommandController {
             res.status(500).json({ message: 'Internal server error' });
         }
     }
+
+    // Get command history by phone number
+    static async getPhoneHistory(req, res) {
+        const { phoneNumber } = req.params;
+        try {
+            const history = await CommandModel.getPhoneHistory(phoneNumber);
+            res.json(history);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    }
+
 }
 
 module.exports = CommandController;

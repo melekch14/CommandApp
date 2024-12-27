@@ -88,49 +88,98 @@ class CommandModel {
 
   static async getCommandWithArticles() {
     return new Promise((resolve, reject) => {
-        const sql = `
+      const sql = `
             SELECT c.id AS command_id, c.nom, c.prenom, c.adresse, c.telephone, c.date, c.note, 
                    a.id AS article_id, a.name AS article_name, a.price AS article_price
             FROM commands c
             LEFT JOIN articles a ON c.id = a.command_id`;
 
-        db.all(sql, (err, rows) => {
-            if (err) {
-                reject(err);
-            } else {
-                // Group commands and their respective articles
-                const commandsMap = new Map();
+      db.all(sql, (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          // Group commands and their respective articles
+          const commandsMap = new Map();
 
-                rows.forEach(row => {
-                    if (!commandsMap.has(row.command_id)) {
-                        commandsMap.set(row.command_id, {
-                            command_id: row.command_id,
-                            nom: row.nom,
-                            prenom: row.prenom,
-                            adresse: row.adresse,
-                            telephone: row.telephone,
-                            date: row.date,
-                            note: row.note,
-                            articles: []
-                        });
-                    }
-
-                    if (row.article_id) { // Ensure articles exist for the command
-                        commandsMap.get(row.command_id).articles.push({
-                            article_id: row.article_id,
-                            name: row.article_name,
-                            price: row.article_price
-                        });
-                    }
-                });
-
-                // Convert the map to an array
-                const commands = Array.from(commandsMap.values());
-                resolve(commands);
+          rows.forEach(row => {
+            if (!commandsMap.has(row.command_id)) {
+              commandsMap.set(row.command_id, {
+                command_id: row.command_id,
+                nom: row.nom,
+                prenom: row.prenom,
+                adresse: row.adresse,
+                telephone: row.telephone,
+                date: row.date,
+                note: row.note,
+                articles: []
+              });
             }
-        });
+
+            if (row.article_id) { // Ensure articles exist for the command
+              commandsMap.get(row.command_id).articles.push({
+                article_id: row.article_id,
+                name: row.article_name,
+                price: row.article_price
+              });
+            }
+          });
+
+          // Convert the map to an array
+          const commands = Array.from(commandsMap.values());
+          resolve(commands);
+        }
+      });
     });
-}
+  }
+
+  // Fetch commands by phone number
+  static async getPhoneHistory(phoneNumber) {
+    return new Promise((resolve, reject) => {
+      const sql = `
+      SELECT c.id AS command_id, c.nom, c.prenom, c.adresse, c.telephone, c.date, c.note,
+             a.id AS article_id, a.name AS article_name, a.price AS article_price
+      FROM commands c
+      LEFT JOIN articles a ON c.id = a.command_id
+      WHERE c.telephone = ?
+    `;
+
+      db.all(sql, [phoneNumber], (err, rows) => {
+        if (err) {
+          return reject(err);
+        }
+
+        // Group commands and their respective articles
+        const commandsMap = new Map();
+
+        rows.forEach((row) => {
+          if (!commandsMap.has(row.command_id)) {
+            commandsMap.set(row.command_id, {
+              command_id: row.command_id,
+              nom: row.nom,
+              prenom: row.prenom,
+              adresse: row.adresse,
+              telephone: row.telephone,
+              date: row.date,
+              note: row.note,
+              articles: []
+            });
+          }
+
+          if (row.article_id) {
+            commandsMap.get(row.command_id).articles.push({
+              article_id: row.article_id,
+              name: row.article_name,
+              price: row.article_price
+            });
+          }
+        });
+
+        const commands = Array.from(commandsMap.values());
+        resolve(commands);
+      });
+    });
+  }
+
 }
 
 module.exports = CommandModel;

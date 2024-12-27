@@ -13,4 +13,8 @@ export class CommandService {
   addCommand(command: any): Observable<any> {
     return this.http.post(this.apiUrl, command);
   }
+
+  getPhoneHistory(phoneNumber: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/phone-history/${phoneNumber}`);
+  }
 }

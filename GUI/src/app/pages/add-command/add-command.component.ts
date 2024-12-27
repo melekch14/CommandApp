@@ -9,6 +9,8 @@ import { CommandService } from '../../services/command.service';
 })
 export class AddCommandComponent {
   commandForm: FormGroup;
+  phoneHistory: any[] = [];
+  showHistoryButton = false;
 
   constructor(private fb: FormBuilder, private commandService: CommandService) {
     this.commandForm = this.fb.group({
@@ -43,17 +45,43 @@ export class AddCommandComponent {
     this.articles.removeAt(index);
   }
 
+  checkPhoneHistory(phoneNumber: string) {
+    if (phoneNumber) {
+      this.commandService.getPhoneHistory(phoneNumber).subscribe(
+        (response: any[]) => {
+          this.phoneHistory = response;
+          this.showHistoryButton = response.length > 0;
+        },
+        (error) => {
+          console.error('Error checking phone history:', error);
+          this.showHistoryButton = false;
+        }
+      );
+    } else {
+      this.showHistoryButton = false;
+    }
+  }
+
+  resetHistoryButton() {
+    this.showHistoryButton = false;
+    this.phoneHistory = [];
+  }
+
+  showPhoneHistory() {
+    alert(`History: ${JSON.stringify(this.phoneHistory, null, 2)}`);
+  }
+
   onSubmit() {
     if (this.commandForm.valid) {
       this.commandService.addCommand(this.commandForm.value).subscribe(
-        response => {
+        (response) => {
           console.log('Command Added:', response);
           alert('Command Added Successfully!');
           this.commandForm.reset();
           this.articles.clear();
-          this.addArticle(); // Add the initial article group back
+          this.addArticle(); // Reset the articles form array
         },
-        error => {
+        (error) => {
           console.error('Error adding command:', error);
           alert('Failed to add the command.');
         }
