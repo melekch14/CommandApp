@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { ChartModule } from 'primeng/chart';
 import { CardModule } from 'primeng/card';
+import { CustomModalComponent } from './shared/custom-modal/custom-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { CardModule } from 'primeng/card';
     StatisticsComponent,
     AddExpenseComponent,
     ExpenseHistoryComponent,
-    LoginComponent
+    LoginComponent,
+    CustomModalComponent
   ],
   imports: [
     BrowserModule,

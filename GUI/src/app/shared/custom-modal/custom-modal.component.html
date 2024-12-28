@@ -1,0 +1,19 @@
+<div *ngIf="title.length || content.length" class="modal show always-visible" id="customModal" tabindex="-1"
+  aria-labelledby="customModalLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="customModalLabel">{{ title }}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onClose()"></button>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="contentTemplate; else plainContent">
+          <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+        </ng-container>
+        <ng-template #plainContent>
+          <p>{{ content }}</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

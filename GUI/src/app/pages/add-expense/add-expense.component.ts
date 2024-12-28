@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ExpenseService } from 'src/app/services/expense.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-expense',
@@ -24,18 +25,18 @@ export class AddExpenseComponent {
     'Charges fixes (loyer, électricité, internet)',
   ];
 
-  constructor(private expenseService: ExpenseService) { }
+  constructor(private expenseService: ExpenseService, private notificationService:NotificationService) { }
 
   onSubmit() {
     this.expenseService.addExpense(this.expense).subscribe({
       next: (response) => {
         console.log('Expense added:', response);
-        alert('Expense successfully added!');
+        this.notificationService.showNotification({ title: 'Success', type: 'success', body: 'Expense successfully added!' });
         this.resetForm();
       },
       error: (err) => {
         console.error('Error adding expense:', err);
-        alert('Failed to add expense. Please try again.');
+        this.notificationService.showNotification({ title: 'Failed', type: 'error', body: "Failed to add expense. Please try again." });
       },
     });
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { CommandService } from '../../services/command.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-add-command',
@@ -11,8 +12,10 @@ export class AddCommandComponent {
   commandForm: FormGroup;
   phoneHistory: any[] = [];
   showHistoryButton = false;
+  modalTitle: string = '';
+  modalContent: string = '';
 
-  constructor(private fb: FormBuilder, private commandService: CommandService) {
+  constructor(private fb: FormBuilder, private commandService: CommandService, private notificationService: NotificationService) {
     this.commandForm = this.fb.group({
       nom: ['', [Validators.required, Validators.minLength(2)]],
       prenom: ['', [Validators.required, Validators.minLength(2)]],
@@ -68,7 +71,7 @@ export class AddCommandComponent {
   }
 
   showPhoneHistory() {
-    alert(`History: ${JSON.stringify(this.phoneHistory, null, 2)}`);
+    this.openModal('Phone History', `${JSON.stringify(this.phoneHistory, null, 2)}`);
   }
 
   onSubmit() {
@@ -76,18 +79,33 @@ export class AddCommandComponent {
       this.commandService.addCommand(this.commandForm.value).subscribe(
         (response) => {
           console.log('Command Added:', response);
-          alert('Command Added Successfully!');
+          this.notificationService.showNotification({ title: 'Success', type: 'success', body: 'Command Added Successfully!' });
           this.commandForm.reset();
           this.articles.clear();
           this.addArticle(); // Reset the articles form array
         },
         (error) => {
           console.error('Error adding command:', error);
-          alert('Failed to add the command.');
+          this.notificationService.showNotification({ title: 'Failed', type: 'error', body: 'Failed to add the command.' });
         }
       );
     } else {
-      alert('Please fill in all required fields correctly.');
+      this.notificationService.showNotification({ title: 'Error', type: 'error', body: "Please fill in all required fields correctly." });
     }
+  }
+  openModal(title: string, content: any) {
+    this.modalTitle = title;
+    this.modalContent = typeof content === 'string' ? content : JSON.stringify(content, null, 2);
+  }
+
+  onModalEvent(event: any) {
+    if (event == 'closed') {
+      this.closeModal();
+    }
+  }
+
+  closeModal() {
+    this.modalTitle = '';
+    this.modalContent = '';
   }
 }

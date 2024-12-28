@@ -1,4 +1,4 @@
-*{
+* {
   font-family: "Roboto Mono", monospace;
 }
 
@@ -8,4 +8,64 @@
 
 .table-striped>tbody>tr:nth-of-type(even)>* {
   background-color: rgb(250, 250, 250);
+}
+
+#notification-container .notification {
+  display: block;
+  position: fixed;
+  width: 230px;
+  z-index: 99;
+  top: -150px;
+  color: #0a0e16;
+  right: 20px;
+  opacity: 0.95;
+  border-radius: 15px;
+  animation-name: slideinTop;
+  animation-duration: 0.85s;
+  animation-fill-mode: forwards;
+  padding: 10px 20px;
+}
+
+#notification-container {
+  z-index: 99;
+}
+
+#notification-container .notification.error {
+  background: #ff7466;
+}
+
+#notification-container .notification.success {
+  background: #66ff80;
+}
+
+#notification-container .notification.warning {
+  background: #ffec66;
+}
+
+#notification-container .notification p.body {
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+}
+
+#notification-container .notification h3.title {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+#notification-container .notification .btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  padding: 0;
+  font-size: 1rem;
+}
+
+@keyframes slideinTop {
+  from {
+    top: -150px;
+  }
+
+  to {
+    top: 20px;
+  }
 }
