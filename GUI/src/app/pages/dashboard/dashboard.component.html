@@ -1,41 +1,44 @@
 <div class="dashboard">
-    <ng-container *ngIf="statistics$ | async as stats">
-      <div class="dashboard__grid">
-        <p-card class="dashboard__card">
-          <div class="dashboard__header">
-            <h3>Total Revenue</h3>
-          </div>
-          <div class="dashboard__content dashboard__content--success">
-            {{ stats.totalRevenue | currency:'EUR' }}
-          </div>
-        </p-card>
-  
-        <p-card class="dashboard__card">
-          <div class="dashboard__header">
-            <h3>Total Expenses</h3>
-          </div>
-          <div class="dashboard__content dashboard__content--danger">
-            {{ stats.totalExpenses | currency:'EUR' }}
-          </div>
-        </p-card>
-  
-        <p-card class="dashboard__card">
-          <div class="dashboard__header">
-            <h3>Net Profit</h3>
-          </div>
-          <div class="dashboard__content" [ngClass]="{'dashboard__content--danger': stats.netProfit < 0, 'dashboard__content--success': stats.netProfit >= 0}">
-            {{ stats.netProfit | currency:'EUR' }}
-          </div>
-        </p-card>
-  
-        <p-card class="dashboard__card">
-          <div class="dashboard__header">
-            <h3>Gross Margin</h3>
-          </div>
-          <div class="dashboard__content dashboard__content--info">
-            {{ stats.grossMargin | number:'1.2-2' }}%
-          </div>
-        </p-card>
+  <ng-container *ngIf="statistics$ | async as stats">
+    <div class="dashboard__grid">
+      <div class="dashboard__card dashboard__content--success">
+        <div class="dashboard__header">
+          <h3>Total Revenue</h3>
+        </div>
+        <div class="dashboard__content">
+          {{ stats.totalRevenue | currency:'EUR' }}
+        </div>
       </div>
-    </ng-container>
-  </div>
+
+      <div class="dashboard__card dashboard__content--danger">
+        <div class="dashboard__header">
+          <h3>Total Expenses</h3>
+        </div>
+        <div class="dashboard__content">
+          {{ stats.totalExpenses | currency:'EUR' }}
+        </div>
+      </div>
+
+      <div class="dashboard__card" [ngClass]="{
+        'dashboard__content--danger': stats.netProfit < 0,
+        'dashboard__content--success': stats.netProfit >= 0
+      }">
+        <div class="dashboard__header">
+          <h3>Net Profit</h3>
+        </div>
+        <div class="dashboard__content">
+          {{ stats.netProfit | currency:'EUR' }}
+        </div>
+      </div>
+
+      <div class="dashboard__card dashboard__content--info">
+        <div class="dashboard__header">
+          <h3>Gross Margin</h3>
+        </div>
+        <div class="dashboard__content">
+          {{ stats.grossMargin | number:'1.2-2' }}%
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

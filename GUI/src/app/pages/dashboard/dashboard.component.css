@@ -1,4 +1,4 @@
-:root {
+:host {
   --primary-color: #3f51b5;
   --success-color: #4caf50;
   --danger-color: #f44336;
@@ -20,7 +20,6 @@
 }
 
 .dashboard__card {
-  background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
   transition: transform 0.2s ease-in-out;
@@ -36,7 +35,7 @@
 }
 
 .dashboard__header h3 {
-  color: var(--primary-color);
+  color: white;
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -45,21 +44,22 @@
 
 .dashboard__content {
   padding: var(--spacing-unit);
+  color: white;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
 }
 
 .dashboard__content--success {
-  color: var(--success-color);
+  background-color: var(--success-color) !important;
 }
 
 .dashboard__content--danger {
-  color: var(--danger-color);
+  background-color: var(--danger-color);
 }
 
 .dashboard__content--info {
-  color: var(--info-color);
+  background-color: var(--info-color);
 }
 
 @media (max-width: 768px) {

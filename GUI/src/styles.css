@@ -5,3 +5,7 @@
 .form-label {
   color: #3b3b3b !important;
 }
+
+.table-striped>tbody>tr:nth-of-type(even)>* {
+  background-color: rgb(250, 250, 250);
+}
